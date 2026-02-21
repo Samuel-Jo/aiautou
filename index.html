@@ -856,45 +856,45 @@
         window.onload = init;
     </script>
 
-    <!-- Sticky Countdown Bar -->
+    <!-- Floating Countdown Pill -->
     <div id="sticky-countdown"
-        class="fixed bottom-0 left-0 right-0 bg-[#1e293b]/95 backdrop-blur-md text-white py-4 px-6 z-[60] border-t border-slate-700 shadow-2xl transition-transform duration-700 translate-y-full">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-                <span class="text-xl md:text-2xl animate-pulse">⏰</span>
-                <span class="text-base md:text-lg font-bold tracking-tight">교육 지원 마감까지</span>
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#1e293b]/95 backdrop-blur-md text-white py-3 px-6 z-[60] border border-slate-700 shadow-2xl transition-transform duration-700 translate-y-[200%] rounded-2xl w-[95%] max-w-4xl">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-xl animate-pulse">⏰</span>
+                <span class="text-sm md:text-base font-bold tracking-tight whitespace-nowrap">교육 지원 마감까지</span>
             </div>
 
             <div class="flex items-center gap-3 font-mono">
-                <div class="flex flex-col items-center">
+                <div class="flex items-center gap-1.5">
                     <div id="days"
-                        class="bg-black/40 px-3 py-1.5 rounded-lg text-xl md:text-2xl font-black min-w-[3.5rem] text-center shadow-inner">
+                        class="bg-black/40 px-2 py-1 rounded-lg text-lg md:text-xl font-black min-w-[2.5rem] text-center shadow-inner">
                         00</div>
-                    <span class="text-[10px] text-slate-400 mt-1.5 font-bold uppercase tracking-wider">일</span>
+                    <span class="text-[10px] text-slate-400 font-bold">일</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex items-center gap-1.5">
                     <div id="hours"
-                        class="bg-black/40 px-3 py-1.5 rounded-lg text-xl md:text-2xl font-black min-w-[3.5rem] text-center shadow-inner">
+                        class="bg-black/40 px-2 py-1 rounded-lg text-lg md:text-xl font-black min-w-[2.5rem] text-center shadow-inner">
                         00</div>
-                    <span class="text-[10px] text-slate-400 mt-1.5 font-bold uppercase tracking-wider">시간</span>
+                    <span class="text-[10px] text-slate-400 font-bold">시간</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex items-center gap-1.5">
                     <div id="minutes"
-                        class="bg-black/40 px-3 py-1.5 rounded-lg text-xl md:text-2xl font-black min-w-[3.5rem] text-center shadow-inner">
+                        class="bg-black/40 px-2 py-1 rounded-lg text-lg md:text-xl font-black min-w-[2.5rem] text-center shadow-inner">
                         00</div>
-                    <span class="text-[10px] text-slate-400 mt-1.5 font-bold uppercase tracking-wider">분</span>
+                    <span class="text-[10px] text-slate-400 font-bold">분</span>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="flex items-center gap-1.5">
                     <div id="seconds"
-                        class="bg-black/40 px-3 py-1.5 rounded-lg text-xl md:text-2xl font-black min-w-[3.5rem] text-center shadow-inner text-rose-400">
+                        class="bg-black/40 px-2 py-1 rounded-lg text-lg md:text-xl font-black min-w-[2.5rem] text-center shadow-inner text-rose-400">
                         00</div>
-                    <span class="text-[10px] text-slate-400 mt-1.5 font-bold uppercase tracking-wider">초</span>
+                    <span class="text-[10px] text-slate-400 font-bold">초</span>
                 </div>
             </div>
 
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScBjpG8NVl91yor4dZ3EfEbwGW_Omvw9hMf-QF3_AjsRZhJPg/viewform"
                 target="_blank"
-                class="bg-[#d4e92b] hover:bg-[#c2d626] text-slate-900 font-black py-3 px-12 rounded-xl transition-all shadow-lg hover:shadow-[#d4e92b]/30 text-[17px] transform hover:scale-105 active:scale-95">
+                class="bg-[#d4e92b] hover:bg-[#c2d626] text-slate-900 font-black py-2 px-8 rounded-xl transition-all shadow-lg hover:shadow-[#d4e92b]/30 text-sm md:text-[15px] transform hover:scale-105 active:scale-95 whitespace-nowrap">
                 지원하기
             </a>
         </div>

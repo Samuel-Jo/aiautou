@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel AI Creator: AI 기반 앱 개발자 양성 과정</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+        }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 100%;
+            height: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+        .step-connector:last-child::after { display: none; }
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Top Navigation -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center relative">
+                
+                <!-- Left: Logo Area -->
+                <div class="flex items-center gap-2">
+                    <div class="relative w-7 h-7 flex items-center justify-center text-[#2b6cf6]">
+                        <div class="absolute inset-x-0 top-0 flex justify-center gap-[2px]">
+                            <div class="w-[3px] h-[3px] bg-current rounded-sm"></div><div class="w-[3px] h-[3px] bg-current rounded-sm"></div><div class="w-[3px] h-[3px] bg-current rounded-sm"></div>
+                        </div>
+                        <div class="absolute inset-x-0 bottom-0 flex justify-center gap-[2px]">
+                            <div class="w-[3px] h-[3px] bg-current rounded-sm"></div><div class="w-[3px] h-[3px] bg-current rounded-sm"></div><div class="w-[3px] h-[3px] bg-current rounded-sm"></div>
+                        </div>
+                        <div class="absolute inset-y-0 left-0 flex flex-col justify-center gap-[2px]">
+                            <div class="h-[3px] w-[3px] bg-current rounded-sm"></div><div class="h-[3px] w-[3px] bg-current rounded-sm"></div><div class="h-[3px] w-[3px] bg-current rounded-sm"></div>
+                        </div>
+                        <div class="absolute inset-y-0 right-0 flex flex-col justify-center gap-[2px]">
+                            <div class="h-[3px] w-[3px] bg-current rounded-sm"></div><div class="h-[3px] w-[3px] bg-current rounded-sm"></div><div class="h-[3px] w-[3px] bg-current rounded-sm"></div>
+                        </div>
+                        <div class="w-5 h-5 border-[2px] border-current rounded-sm bg-white z-10 flex items-center justify-center">
+                            <div class="w-2.5 h-2.5 border-[1.5px] border-current rounded-sm"></div>
+                        </div>
+                    </div>
+                    <span class="text-[22px] font-black text-[#111827] tracking-tight">Intel AI Creator</span>
+                </div>
+                
+                <!-- Right: Nav Links + Apply Button -->
+                <div class="hidden md:flex items-center">
+                    <div class="flex space-x-10 text-[15px] font-bold text-slate-600 mr-[50px]">
+                        <a href="#roadmap" class="hover:text-blue-600 transition-colors">운영 프로세스</a>
+                        <a href="#curriculum" class="hover:text-blue-600 transition-colors">상세 커리큘럼</a>
+                        <a href="#projects" class="hover:text-blue-600 transition-colors">프로젝트 & 취업</a>
+                    </div>
+                    
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScBjpG8NVl91yor4dZ3EfEbwGW_Omvw9hMf-QF3_AjsRZhJPg/viewform" target="_blank" 
+                       class="bg-[#1c64f2] hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-full transition-colors text-[15px]">
+                        지원하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- 0. Main Hero Section -->
+        <section id="hero" class="flex flex-col lg:flex-row items-center justify-between gap-10">
+            <!-- Left Text Content -->
+            <div class="lg:w-[55%] flex flex-col items-start space-y-6">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#f8fafc] border border-slate-200 text-[13px] font-bold text-slate-700">
+                    <span class="flex items-center justify-center w-5 h-5 bg-white shadow-sm border border-orange-100 rounded-full text-[12px]">🏅</span>
+                    고용노동부 <span class="text-slate-300 font-light px-0.5">x</span> RAPA <span class="text-slate-300 font-light px-0.5">x</span> Intel
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-[2.6rem] lg:text-[3.2rem] font-black text-[#22272e] leading-[1.25] tracking-tight">
+                    인텔 글로벌 AI 기술,<br>
+                    <span class="text-[#00a2e8]">내일배움카드로 전액 지원</span>
+                </h1>
+
+                <!-- Paragraph -->
+                <p class="text-slate-600 text-[15px] lg:text-[16px] leading-[1.7] font-medium break-keep max-w-[90%]">
+                    단순 코딩을 넘어 실제 작동하는 '서비스'를 만드는 실전 AI 개발자 양성. 인텔 AI 응용앱 크리에이터 용인과정 8기에 합류하여 완벽한 취업 포트폴리오를 완성하세요.
+                </p>
+
+                <!-- CTA & Deadline -->
+                <div class="flex items-center gap-5 pt-2">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScBjpG8NVl91yor4dZ3EfEbwGW_Omvw9hMf-QF3_AjsRZhJPg/viewform" target="_blank"
+                       class="bg-[#1c64f2] hover:bg-blue-700 text-white font-bold py-3.5 px-8 rounded-full transition-all flex justify-center items-center gap-2">
+                        과정 지원하기 <span class="text-lg leading-none -mt-0.5 opacity-90">›</span>
+                    </a>
+                    <div class="flex items-center text-slate-500 text-[14px] font-medium gap-1.5">
+                        <span class="text-lg opacity-60">🕒</span> 모집 마감: 2026. 03. 22
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual Image -->
+            <div class="lg:w-[45%] w-full">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                     alt="" 
+                     class="w-full h-auto lg:h-[400px] object-cover rounded-3xl shadow-lg border border-slate-100">
+            </div>
+        </section>
+
+        <!-- 1. Key Stats Header -->
+        <header class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="md:col-span-1 bg-[#1c64f2] rounded-2xl p-6 text-white shadow-md flex flex-col justify-between relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-lg font-medium opacity-90">총 훈련 기간</h2>
+                    <p class="text-4xl font-black mt-2">118일</p>
+                    <p class="text-sm opacity-75 mt-1">944시간 집중 과정</p>
+                </div>
+                <div class="absolute right-0 bottom-0 opacity-10 text-9xl font-black -mr-4 -mb-4">D</div>
+            </div>
+            
+            <div class="md:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex flex-col justify-center">
+                <h1 class="text-2xl font-bold text-slate-800 mb-2">Intel AI 기반 앱 개발자 양성 과정</h1>
+                <p class="text-slate-600">
+                    본 과정은 현업 수요가 높은 <span class="bg-blue-50 text-blue-600 px-1 rounded font-bold">모델 서빙(Serving) 및 앱서비스 배포</span> 역량 강화에 집중한 실무형 K-Digital Training 과정입니다.
+                </p>
+            </div>
+        </header>
+
+        <!-- 2. Operation Roadmap -->
+        <section id="roadmap" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+            <h2 class="text-xl font-bold text-slate-800 mb-8 flex items-center gap-2">
+                <span class="w-2 h-6 bg-[#1c64f2] rounded-full"></span>
+                전체 운영 로드맵 (Operation Roadmap)
+            </h2>
+            
+            <div class="relative flex flex-col md:flex-row justify-between items-start md:items-center gap-8 md:gap-0">
+                <div class="hidden md:block absolute top-[24px] left-0 w-full h-1 bg-slate-100 z-0 mx-12" style="width: calc(100% - 6rem);"></div>
+
+                <div class="relative z-10 flex flex-row md:flex-col items-center gap-4 md:gap-2 w-full md:w-1/5 group cursor-pointer" onclick="showStepDetail('step1')">
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-[#1c64f2] text-[#1c64f2] flex items-center justify-center font-bold text-lg shadow-sm">01</div>
+                    <div class="text-left md:text-center">
+                        <h3 class="font-bold text-slate-800">Foundation</h3>
+                        <p class="text-xs text-slate-500 mt-1">이론 및 프로그래밍<br>(Day 1-19)</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 flex flex-row md:flex-col items-center gap-4 md:gap-2 w-full md:w-1/5 group cursor-pointer" onclick="showStepDetail('step2')">
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-slate-300 text-slate-500 flex items-center justify-center font-bold text-lg shadow-sm hover:border-blue-400 hover:text-blue-400 transition-colors">02</div>
+                    <div class="text-left md:text-center">
+                        <h3 class="font-bold text-slate-700">App Dev</h3>
+                        <p class="text-xs text-slate-500 mt-1">앱 개발 & 배포<br>(Day 20-37)</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 flex flex-row md:flex-col items-center gap-4 md:gap-2 w-full md:w-1/5 group cursor-pointer" onclick="showStepDetail('step3')">
+                    <div class="w-12 h-12 rounded-full bg-blue-50 border-2 border-blue-600 text-blue-700 flex items-center justify-center font-bold text-lg shadow-sm ring-4 ring-blue-50">03</div>
+                    <div class="text-left md:text-center">
+                        <h3 class="font-bold text-blue-700">Experience</h3>
+                        <p class="text-xs text-slate-500 mt-1">심화 AI & 앱 배포<br>(Day 38-70)</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 flex flex-row md:flex-col items-center gap-4 md:gap-2 w-full md:w-1/5 group cursor-pointer" onclick="showStepDetail('step4')">
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-slate-300 text-slate-500 flex items-center justify-center font-bold text-lg shadow-sm hover:border-blue-400 hover:text-blue-400 transition-colors">04</div>
+                    <div class="text-left md:text-center">
+                        <h3 class="font-bold text-slate-700">Project</h3>
+                        <p class="text-xs text-slate-500 mt-1">실전 캡스톤 개발<br>(Day 71-118)</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 flex flex-row md:flex-col items-center gap-4 md:gap-2 w-full md:w-1/5 group cursor-pointer" onclick="showStepDetail('step5')">
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-slate-300 text-slate-500 flex items-center justify-center font-bold text-lg shadow-sm hover:border-blue-400 hover:text-blue-400 transition-colors">05</div>
+                    <div class="text-left md:text-center">
+                        <h3 class="font-bold text-slate-700">취업 지원 & 사후</h3>
+                        <p class="text-xs text-slate-500 mt-1">포트폴리오 & 매칭<br>(수료 후)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-detail-box" class="mt-8 bg-slate-50 rounded-xl p-6 border border-slate-200 transition-all duration-300">
+                <div class="flex items-start gap-4">
+                    <div class="text-3xl">🚀</div>
+                    <div>
+                        <h4 id="step-title" class="text-lg font-bold text-slate-800 mb-1">Experience (심화 AI & 앱 배포)</h4>
+                        <p id="step-desc" class="text-slate-600 text-sm mb-3">AI 모델을 앱 서비스로 배포하는 실무 기술을 익힙니다.</p>
+                        <ul id="step-list" class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-500">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Detailed Curriculum (Restored Accordion with Phase 1 Open) -->
+            <section id="curriculum" class="lg:col-span-2 space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-slate-800">상세 커리큘럼 (총 944시간)</h2>
+                    <span class="text-xs font-semibold bg-blue-100 text-blue-700 px-3 py-1 rounded-full">NCS 기반 설계</span>
+                </div>
+
+                <!-- Phase List (Populated via JS) -->
+                <div class="space-y-4" id="curriculum-list">
+                </div>
+            </section>
+
+            <!-- Right Column: Charts & Metrics -->
+            <aside class="lg:col-span-1 space-y-6">
+                
+                <!-- Chart: Tech Stack Radar -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="chart-container">
+                        <canvas id="skillRadarChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p class="text-[15px] font-bold text-[#64748b]">앱 서비스 개발 및</p>
+                        <p class="text-[15px] font-bold text-[#64748b]">AI/Gen AI 모델 서빙 역량 최적화</p>
+                    </div>
+                </div>
+
+                <!-- Employment Support Card -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-2xl">💼</span>
+                        <h3 class="font-bold text-slate-800">취업 지원 프로세스</h3>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex gap-2">
+                            <span class="text-blue-500 font-bold">✓</span><span>1:1 진로 상담 (월 1회)</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-blue-500 font-bold">✓</span><span>협약 기업 인사담당자 모의면접</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-blue-500 font-bold">✓</span><span>이력서/포트폴리오 첨삭 클리닉</span>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <!-- 4. Project Gallery -->
+        <section id="projects" class="space-y-6">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800">최종 앱 프로젝트 (Capstone) 예시</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-[20px] overflow-hidden border border-slate-200 shadow-sm flex flex-col">
+                    <div class="h-[140px] bg-[#eef2f6] flex items-center justify-center">
+                        <span class="text-5xl drop-shadow-sm">📊</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-lg text-[#1c64f2] mb-2">통계/분석 솔루션 앱</h3>
+                        <p class="text-[13px] text-slate-500 mb-6 leading-relaxed">통계 데이터 전처리 및 대시보드 구현 (Capstone 1)</p>
+                        <div class="flex gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white border border-slate-200 text-xs rounded-md text-slate-500 font-medium">Pandas</span>
+                            <span class="px-3 py-1 bg-white border border-slate-200 text-xs rounded-md text-slate-500 font-medium">Streamlit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-[20px] overflow-hidden border border-slate-200 shadow-sm flex flex-col">
+                    <div class="h-[140px] bg-[#eef2f6] flex items-center justify-center">
+                        <span class="text-5xl drop-shadow-sm">🖼️</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-lg text-[#111827] mb-2">비전 AI 객체 탐지 앱</h3>
+                        <p class="text-[13px] text-slate-500 mb-6 leading-relaxed">CV 기술을 활용한 객체 분류 및 판독 서비스 (Capstone 2)</p>
+                        <div class="flex gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white border border-slate-200 text-xs rounded-md text-slate-500 font-medium">OpenCV</span>
+                            <span class="px-3 py-1 bg-white border border-slate-200 text-xs rounded-md text-slate-500 font-medium">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-[20px] overflow-hidden border border-[#dbeafe] shadow-md flex flex-col relative">
+                    <div class="absolute top-4 right-4 bg-[#1c64f2] text-white text-[11px] font-bold px-3 py-1 rounded-full z-10 shadow-sm">
+                        Gen AI Focus
+                    </div>
+                    <div class="h-[140px] bg-[#e0e7ff] flex items-center justify-center">
+                        <span class="text-5xl drop-shadow-md">🤖</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-lg text-[#111827] mb-2">지능형 챗봇/에이전트 서비스</h3>
+                        <p class="text-[13px] text-slate-500 mb-6 leading-relaxed">LLM, RAG를 결합한 맞춤형 AI 앱 배포 (Capstone 3)</p>
+                        <div class="flex gap-2 mt-auto">
+                            <span class="px-3 py-1 bg-white border border-[#bfdbfe] text-xs rounded-md text-[#1c64f2] font-bold">LangChain</span>
+                            <span class="px-3 py-1 bg-white border border-[#bfdbfe] text-xs rounded-md text-[#1c64f2] font-bold">React</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. New CTA / Info Section -->
+        <section id="final-cta" class="bg-[#0f172a] rounded-[24px] p-8 lg:p-12 text-white flex flex-col lg:flex-row justify-between items-center gap-10 shadow-xl relative overflow-hidden">
+            <!-- Left Info Area -->
+            <div class="lg:w-1/2 w-full space-y-8 z-10">
+                <h2 class="text-3xl lg:text-[2.2rem] font-bold leading-tight tracking-tight">
+                    당신의 커리어 전환점,<br>지금 바로 합류하세요.
+                </h2>
+                
+                <div class="h-[1px] w-full bg-slate-700"></div>
+
+                <div class="space-y-6">
+                    <!-- Info Item 1 -->
+                    <div class="flex items-start gap-4">
+                        <div class="bg-slate-800/80 p-2.5 rounded-lg text-blue-400 mt-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm mb-1">교육 기간</p>
+                            <p class="font-bold text-[17px] tracking-wide">2026. 03. 30 ~ 09. 22</p>
+                        </div>
+                    </div>
+                    <!-- Info Item 2 -->
+                    <div class="flex items-start gap-4">
+                        <div class="bg-slate-800/80 p-2.5 rounded-lg text-blue-400 mt-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm mb-1">교육 시간</p>
+                            <p class="font-bold text-[17px] tracking-wide">평일 09:00 ~ 18:00</p>
+                        </div>
+                    </div>
+                    <!-- Info Item 3 -->
+                    <div class="flex items-start gap-4">
+                        <div class="bg-slate-800/80 p-2.5 rounded-lg text-blue-400 mt-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm mb-1">교육 장소</p>
+                            <p class="font-bold text-[17px] tracking-wide">용인 흥덕유타워 17층 마인드캔버스 (수원/분당 인접)</p>
+                        </div>
+                    </div>
+                    <!-- Info Item 4 -->
+                    <div class="flex items-start gap-4">
+                        <div class="bg-slate-800/80 p-2.5 rounded-lg text-blue-400 mt-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm mb-1">지원 자격</p>
+                            <p class="font-bold text-[17px] tracking-wide">내일배움카드 발급 가능자, 70세 미만, 전공 무관</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Card Area -->
+            <div class="lg:w-[45%] w-full z-10">
+                <div class="bg-white rounded-[24px] p-8 text-center text-slate-800 shadow-2xl flex flex-col items-center">
+                    <!-- Deadline Badge -->
+                    <div class="bg-red-50 text-red-600 font-bold text-xs px-4 py-1.5 rounded-full mb-6 inline-block">
+                        모집 마감: ~ 2026. 03. 22
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mb-3 text-slate-900">지원하기</h3>
+                    <p class="text-slate-500 text-[14px] leading-relaxed mb-6 px-4">
+                        마인드 캔버스 홈페이지를 통해 선발 절차를 확인<br>하실 수 있습니다.
+                    </p>
+
+                    <!-- QR Box Mockup -->
+                    <div class="bg-slate-50 rounded-xl p-6 mb-6 w-full flex flex-col items-center border border-slate-100">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLScBjpG8NVl91yor4dZ3EfEbwGW_Omvw9hMf-QF3_AjsRZhJPg/viewform" 
+                             alt="QR Code" class="w-32 h-32 mix-blend-multiply mb-3">
+                        <p class="text-[13px] text-slate-400 font-medium">QR 코드를 스캔하세요</p>
+                    </div>
+
+                    <!-- Button -->
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScBjpG8NVl91yor4dZ3EfEbwGW_Omvw9hMf-QF3_AjsRZhJPg/viewform" target="_blank" 
+                       class="w-full block text-center bg-[#1c64f2] hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg text-[16px] tracking-wide mb-4">
+                        지원하기
+                    </a>
+
+                    <p class="text-slate-500 text-[13px] font-medium">문의: 010-7790-8085</p>
+                </div>
+            </div>
+            
+            <!-- Abstract background shape -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none transform translate-x-1/3 -translate-y-1/3"></div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-12 py-10 text-center space-y-2">
+        <div class="max-w-2xl mx-auto">
+            <p class="text-[15px] text-[#475569]">&copy; 2026 고용노동부 × RAPA × Intel. x MindCanvas. All rights reserved.</p>
+            <p class="text-[14px] text-[#64748b] mt-1">본 과정은 K-Digital Training 사업의 일환으로 진행됩니다.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Roadmap Step Details ---
+        const stepDetails = {
+            step1: {
+                title: "AI Foundation (Day 1-19 / 152H)",
+                desc: "AI의 기본 이론부터 데이터 분석에 필요한 Python 프로그래밍까지 필수 기초를 다집니다.",
+                items: ["AI 챗봇, 노코드 도구 활용", "Python, Pandas, 시각화", "AI 프로젝트 사이클 및 윤리 교육"]
+            },
+            step2: {
+                title: "App Dev (Day 20-37 / 144H)",
+                desc: "실제 서비스를 만들기 위한 웹/앱 프론트엔드 및 백엔드 기술, 배포 역량을 익힙니다.",
+                items: ["React, FastAPI 기반 앱 개발", "Firebase 및 DB 연동", "Docker 환경 배포 및 프로젝트 기획"]
+            },
+            step3: {
+                title: "Experience (Day 38-70 / 264H)",
+                desc: "AI 모델을 앱 서비스로 배포하는 실무 기술을 익힙니다. ML/DL, CV, NLP, Gen AI를 아우릅니다.",
+                items: ["ML/DL 기초 및 CV/NLP 모델 구현", "Gen AI, 멀티모달, 프롬프트 엔지니어링", "LLM 파인튜닝, RAG, AI 에이전트 구축"]
+            },
+            step4: {
+                title: "Project (Day 71-118 / 384H)",
+                desc: "학습한 기술을 융합하여 통계, CV, Gen AI 기반의 3가지 대규모 캡스톤 프로젝트를 진행합니다.",
+                items: ["Capstone 1: 예측/분석 솔루션 앱 (17일)", "Capstone 2: 객체 탐지/분류 앱 (16일)", "Capstone 3: 지능형 챗봇 등 서비스 앱 (14일)"]
+            },
+            step5: {
+                title: "취업 지원 및 사후 관리",
+                desc: "수료생이 AI 개발자로 성공적으로 취업할 수 있도록 전폭적인 지원을 제공합니다.",
+                items: ["1:1 취업/진로 컨설팅", "이력서 및 포트폴리오 첨삭", "협약 기업 매칭 및 모의 면접"]
+            }
+        };
+
+        // --- Extracted Curriculum Data for Accordion ---
+        const curriculumData = [
+            {
+                phase: "Phase 1: AI Foundation",
+                duration: "152H (19일)",
+                highlight: false,
+                modules: [
+                    { name: "기본 이론 & 인식", content: "AI 챗봇, 노코드 도구, AI 프로젝트 사이클, Gen AI 도구", hours: "일차 1 ~ 5" },
+                    { name: "프로그래밍 & 분석", content: "Python 기초, Pandas, 시각화, 응용 AI 코딩, 배포, AI 소프트 스킬", hours: "일차 6 ~ 15" },
+                    { name: "역사 & 사회적 영향", content: "Industry 4.0, AI 3대 도메인, AI 프로젝트 관리, 윤리", hours: "일차 16 ~ 19" }
+                ]
+            },
+            {
+                phase: "Phase 2: App Dev",
+                duration: "144H (18일)",
+                highlight: false,
+                modules: [
+                    { name: "웹/앱 개발 기초", content: "React, Flask/FastAPI, Gen AI API 연동, 데이터베이스 연동, Streamlit", hours: "일차 20 ~ 30" },
+                    { name: "배포 & 프로젝트 기획", content: "Firebase, Docker, 앱 프로젝트 기획, UI/서버 구현 및 발표", hours: "일차 31 ~ 37" }
+                ]
+            },
+            {
+                phase: "Phase 3: Experience",
+                duration: "264H (33일)",
+                highlight: true,
+                modules: [
+                    { name: "머신러닝/딥러닝", content: "지도/비지도/강화학습, ML/DL 알고리즘 개요", hours: "일차 38 ~ 40" },
+                    { name: "통계 & 데이터 전략", content: "Data Strategy, Overfitting, Stat Case Study, No-Code Proj", hours: "일차 41 ~ 44" },
+                    { name: "컴퓨터 비전 (CV)", content: "OpenCV, Image Classification, OpenVINO, Gen AI Vision, Data Mining", hours: "일차 45 ~ 50" },
+                    { name: "자연어 처리 (NLP)", content: "AI Team & Roles, NLP Pipeline, Chatbot Dev, NLP Case Study", hours: "일차 51 ~ 56" },
+                    { name: "생성형 AI (Gen AI)", content: "Gen AI 역사/기능, Multimodal, Prompt Engineering, LLM Fine-Tuning, LangChain", hours: "일차 57 ~ 65" },
+                    { name: "심화 Gen AI & 에이전트", content: "sLM + RAG, Vector DB, AI Agents, Multi-Agent System", hours: "일차 66 ~ 70" }
+                ]
+            },
+            {
+                phase: "Phase 4: Project",
+                duration: "384H (48일)",
+                highlight: false,
+                modules: [
+                    { name: "통계 기반 예측/분석", content: "Capstone 1: 예측/분석 솔루션 개발 (17일간)", hours: "일차 71 ~ 87" },
+                    { name: "컴퓨터 비전", content: "Capstone 2: 객체 탐지/분류 솔루션 개발 (16일간)", hours: "일차 88 ~ 103" },
+                    { name: "자연어 처리/Gen AI", content: "Capstone 3: 지능형 챗봇, 자동 요약 등 서비스 개발 (14일간)", hours: "일차 104 ~ 117" },
+                    { name: "최종 발표", content: "최종 프로젝트 발표회, 포트폴리오 리뷰 및 수료식", hours: "일차 118" }
+                ]
+            }
+        ];
+
+        function init() {
+            showStepDetail('step3');
+            renderCurriculum();
+            renderCharts();
+        }
+
+        function showStepDetail(stepId) {
+            const data = stepDetails[stepId];
+            const box = document.getElementById('step-detail-box');
+            
+            box.style.opacity = '0.5';
+            setTimeout(() => {
+                document.getElementById('step-title').innerText = data.title;
+                document.getElementById('step-desc').innerText = data.desc;
+                document.getElementById('step-list').innerHTML = data.items.map(item => 
+                    `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#1c64f2] rounded-full"></span>${item}</li>`
+                ).join('');
+                box.style.opacity = '1';
+            }, 150);
+        }
+
+        function renderCurriculum() {
+            const container = document.getElementById('curriculum-list');
+            container.innerHTML = curriculumData.map((phase, idx) => `
+                <div class="border border-slate-200 rounded-xl overflow-hidden bg-white hover:border-blue-300 transition-colors ${phase.highlight ? 'ring-2 ring-blue-100' : ''}">
+                    <div class="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center cursor-pointer" onclick="toggleAccordion(${idx})">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 block mb-1">${phase.duration}</span>
+                            <h3 class="font-bold text-slate-800 ${phase.highlight ? 'text-blue-700' : ''}">${phase.phase}</h3>
+                        </div>
+                        <span class="text-slate-400 text-xl transform transition-transform duration-200" id="icon-${idx}" style="transform: rotate(${idx === 0 ? '180deg' : '0deg'});">▼</span>
+                    </div>
+                    <div id="content-${idx}" class="p-6 space-y-4 ${phase.highlight ? 'bg-blue-50/30' : ''} ${idx === 0 ? '' : 'hidden'}">
+                        ${phase.modules.map(mod => `
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-2 last:border-0 last:pb-0">
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-700">${mod.name}</h4>
+                                    <p class="text-xs text-slate-500">${mod.content}</p>
+                                </div>
+                                <span class="text-xs font-medium bg-white border border-slate-200 px-2 py-1 rounded text-slate-500 whitespace-nowrap">${mod.hours}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleAccordion(idx) {
+            const content = document.getElementById(`content-${idx}`);
+            const icon = document.getElementById(`icon-${idx}`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function renderCharts() {
+            // Radar Chart with styles exactly matching the reference image
+            new Chart(document.getElementById('skillRadarChart'), {
+                type: 'radar',
+                data: {
+                    labels: ['AI/데이터 분석', '앱 프론트/백엔드', '모델 서빙/클라우드', '생성형 AI (LLM)', '프로젝트 관리'],
+                    datasets: [{
+                        data: [85, 95, 95, 95, 95], // AI/데이터 분석만 살짝 낮게, 나머지 꽉 채움
+                        borderColor: '#2b6cb0', // Strong blue edge
+                        backgroundColor: 'rgba(59, 130, 246, 0.25)', // Light blue fill
+                        pointBackgroundColor: '#2b6cb0',
+                        borderWidth: 3, // Thicker border like image
+                        pointRadius: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: { display: false, stepSize: 20 },
+                            grid: { color: '#e2e8f0', lineWidth: 1 },
+                            angleLines: { color: '#e2e8f0' },
+                            pointLabels: { 
+                                font: { size: 12, family: 'Noto Sans KR' }, 
+                                color: '#64748b' 
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
